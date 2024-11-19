@@ -97,7 +97,7 @@ class Multiply(object):
 
         data_final = []
         for i in range(len(clip)):
-            image = clip[i].astype(np.float64)
+            image = clip[i].astype(float)
             image *= self.value
             image = np.where(image > 255, 255, image)
             image = np.where(image < 0, 0, image)
@@ -129,7 +129,7 @@ class Pepper(object):
 
         data_final = []
         for i in range(len(clip)):
-            img = clip[i].astype(np.float)
+            img = clip[i].astype(float)
             img_shape = img.shape
             noise = np.random.randint(self.ratio, size=img_shape)
             img = np.where(noise == 0, 0, img)
@@ -159,7 +159,7 @@ class Salt(object):
 
         data_final = []
         for i in range(len(clip)):
-            img = clip[i].astype(np.float)
+            img = clip[i].astype(float)
             img_shape = img.shape
             noise = np.random.randint(self.ratio, size=img_shape)
             img = np.where(noise == 0, 255, img)
