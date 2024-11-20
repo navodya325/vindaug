@@ -131,7 +131,7 @@ class RandomTranslate(object):
 
         if isinstance(clip[0], np.ndarray):
             rows, cols, ch = clip[0].shape
-            transform_mat = float([[1, 0, x_move], [0, 1, y_move]])
+            transform_mat = np.float64([[1, 0, x_move], [0, 1, y_move]])
             return [cv2.warpAffine(img, transform_mat, (cols, rows)) for img in clip]
         elif isinstance(clip[0], PIL.Image.Image):
             return [img.transform(img.size, PIL.Image.AFFINE, (1, 0, x_move, 0, 1, y_move)) for img in clip]
@@ -162,7 +162,7 @@ class RandomShear(object):
 
         if isinstance(clip[0], np.ndarray):
             rows, cols, ch = clip[0].shape
-            transform_mat = float([[1, x_shear, 0], [y_shear, 1, 0]])
+            transform_mat = np.float64([[1, x_shear, 0], [y_shear, 1, 0]])
             return [cv2.warpAffine(img, transform_mat, (cols, rows)) for img in clip]
         elif isinstance(clip[0], PIL.Image.Image):
             return [img.transform(img.size, PIL.Image.AFFINE, (1, x_shear, 0, y_shear, 1, 0)) for img in clip]
